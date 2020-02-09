@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/belpa/source/repos/MyFirstGame/MyFirstGame/Content/ball.png</File>
+    <File>C:/Users/belpa/source/repos/MyFirstGame/MyFirstGame/Content/Enemy_ship.png</File>
+    <File>C:/Users/belpa/source/repos/MyFirstGame/MyFirstGame/Content/lazer.png</File>
+    <File>C:/Users/belpa/source/repos/MyFirstGame/MyFirstGame/Content/space_img.jpg</File>
+    <File>C:/Users/belpa/source/repos/MyFirstGame/MyFirstGame/Content/spaceShip.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

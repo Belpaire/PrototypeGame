@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/belpa/source/repos/MyFirstGame/MyFirstGame/Content/space_img.jpg","C:/Users/belpa/source/repos/MyFirstGame/MyFirstGame/Content/bin/Windows/space_img.xnb","TextureProcessor","Texture2DContent",5595,201685,0,2390535
+"C:/Users/belpa/source/repos/MyFirstGame/MyFirstGame/Content/spaceShip.png","C:/Users/belpa/source/repos/MyFirstGame/MyFirstGame/Content/bin/Windows/spaceShip.xnb","TextureProcessor","Texture2DContent",2945,828085,0,0699133
