@@ -11,7 +11,7 @@ pool:
 
 variables:
   solution: '**/*.sln'
-  buildPlatform: 'x86'
+  buildPlatform: 'x64'
   buildConfiguration: 'Release'
   monoGameVersion: 'v3.7.1'
 
@@ -44,6 +44,7 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    clean: true
 
 - task: ArchiveFiles@2
   inputs:
