@@ -29,8 +29,8 @@ steps:
 - script: |
     mkdir "%PROGRAMFILES(X86)%\MSBuild"
     xcopy .\tmp\$PROGRAMFILES\MSBuild "%PROGRAMFILES(X86)%\MSBuild" /E /Y
-    mkdir "%PROGRAMFILES(X86)%\MonoGame\v3.0\Assemblies\"
-    xcopy .\tmp\Assemblies "%PROGRAMFILES(X86)%\MonoGame\v3.0\Assemblies" /E /Y
+    mkdir "%PROGRAMFILES(X86)%\Reference Assemblies\Microsoft\MonoGame\v3.0\Assemblies\"
+    xcopy .\tmp\Assemblies "%PROGRAMFILES(X86)%\Reference Assemblies\Microsoft\MonoGame\v3.0\Assemblies" /E /Y
   displayName: 'Install MonoGame $(monoGameVersion)'
 
 - task: NuGetToolInstaller@1
