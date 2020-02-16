@@ -19,12 +19,12 @@ variables:
 
 
 steps:
-- task: Bash@3
+- task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: |
-      powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://github.com/MonoGame/MonoGame/releases/download/$(monoGameVersion)/MonoGameSetup.exe', '.\MonoGameSetup.exe')"
-        displayName: 'Download MonoGame $(monoGameVersion)'
+    script: 'powershell -Command "(New-Object System.Net.WebClient).DownloadFile(''https://github.com/MonoGame/MonoGame/releases/download/$(monoGameVersion)/MonoGameSetup.exe'', ''.\MonoGameSetup.exe'')"'
+  displayName: 'Install MonoGame $(monoGameVersion)'
+
 - task: ExtractFiles@1
   inputs:
     archiveFilePatterns: 'MonoGameSetup.exe'
