@@ -2,7 +2,7 @@
 # Build and run tests for .NET Desktop or Windows classic desktop solutions.
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
-
+  
 trigger:
 - master
 
@@ -13,9 +13,32 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'x64'
   buildConfiguration: 'Release'
+  monoGameVersion: '3.7.1'
+
+
+
 
 steps:
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://github.com/MonoGame/MonoGame/releases/download/$(monoGameVersion)/MonoGameSetup.exe', '.\MonoGameSetup.exe')"
+        displayName: 'Download MonoGame $(monoGameVersion)'
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: 'MonoGameSetup.exe'
+    destinationFolder: './tmp/'
+  displayName: 'Extract MonoGame $(monoGameVersion)'
+
+- script: |
+    mkdir "%PROGRAMFILES(X86)%\MSBuild"
+    xcopy .\tmp\$PROGRAMFILES\MSBuild "%PROGRAMFILES(X86)%\MSBuild" /E /Y
+    mkdir "%PROGRAMFILES(X86)%\MonoGame\v3.0\Assemblies\"
+    xcopy .\tmp\Assemblies "%PROGRAMFILES(X86)%\MonoGame\v3.0\Assemblies" /E /Y
+  displayName: 'Install MonoGame $(monoGameVersion)'
 - task: NuGetToolInstaller@1
+
 
 - task: NuGetCommand@2
   inputs:
@@ -26,4 +49,3 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
