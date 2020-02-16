@@ -19,10 +19,8 @@ variables:
 
 
 steps:
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: 'powershell -Command "(New-Object System.Net.WebClient).DownloadFile(''https://github.com/MonoGame/MonoGame/releases/download/$(monoGameVersion)/MonoGameSetup.exe'', ''.\MonoGameSetup.exe'')"'
+- script: |
+    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://github.com/MonoGame/MonoGame/releases/download/$(monoGameVersion)/MonoGameSetup.exe', '.\MonoGameSetup.exe')"
   displayName: 'Download MonoGame $(monoGameVersion)'
 
 - task: ExtractFiles@1
@@ -49,3 +47,19 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.SourcesDirectory)/MonoGame1/bin/Windows/x86/$(buildConfiguration)/'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Windows-$(Build.BuildId).zip'
+    replaceExistingArchive: true
+  displayName: 'Archive Windows'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(build.ArtifactStagingDirectory)'
+    ArtifactName: 'MonoGame1'
+    Parallel: true
+  displayName: 'Upload Artifacts'
