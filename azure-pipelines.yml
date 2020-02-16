@@ -2,7 +2,7 @@
 # Build and run tests for .NET Desktop or Windows classic desktop solutions.
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
-  
+
 trigger:
 - master
 
@@ -11,12 +11,9 @@ pool:
 
 variables:
   solution: '**/*.sln'
-  buildPlatform: 'x64'
+  buildPlatform: 'x86'
   buildConfiguration: 'Release'
-  monoGameVersion: '3.7.1'
-
-
-
+  monoGameVersion: 'v3.7.1'
 
 steps:
 - script: |
@@ -35,8 +32,8 @@ steps:
     mkdir "%PROGRAMFILES(X86)%\MonoGame\v3.0\Assemblies\"
     xcopy .\tmp\Assemblies "%PROGRAMFILES(X86)%\MonoGame\v3.0\Assemblies" /E /Y
   displayName: 'Install MonoGame $(monoGameVersion)'
-- task: NuGetToolInstaller@1
 
+- task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
   inputs:
