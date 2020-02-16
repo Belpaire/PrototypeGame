@@ -23,7 +23,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'powershell -Command "(New-Object System.Net.WebClient).DownloadFile(''https://github.com/MonoGame/MonoGame/releases/download/$(monoGameVersion)/MonoGameSetup.exe'', ''.\MonoGameSetup.exe'')"'
-  displayName: 'Install MonoGame $(monoGameVersion)'
+  displayName: 'Download MonoGame $(monoGameVersion)'
 
 - task: ExtractFiles@1
   inputs:
