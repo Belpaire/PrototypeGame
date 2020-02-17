@@ -29,8 +29,8 @@ steps:
 - script: |
     mkdir "%PROGRAMFILES(X86)%\MSBuild"
     xcopy .\tmp\$PROGRAMFILES\MSBuild "%PROGRAMFILES(X86)%\MSBuild" /E /Y
-    mkdir "%PROGRAMFILES(X86)%\Reference Assemblies\Microsoft\MonoGame\v3.0\Assemblies\"
-    xcopy .\tmp\Assemblies "%PROGRAMFILES(X86)%\Reference Assemblies\Microsoft\MonoGame\v3.0\Assemblies" /E /Y
+    mkdir "%PROGRAMFILES(X86)%\MonoGame\v3.0\Assemblies\"
+    xcopy .\tmp\Assemblies "%PROGRAMFILES(X86)%\MonoGame\v3.0\Assemblies" /E /Y
   displayName: 'Install MonoGame $(monoGameVersion)'
 
 - task: NuGetToolInstaller@1
@@ -48,7 +48,7 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.SourcesDirectory)/MonoGame1/bin/Windows/x86/$(buildConfiguration)/'
+    rootFolderOrFile: '$(Build.SourcesDirectory)/MyFirstGame/bin/x64/$(buildConfiguration)/'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Windows-$(Build.BuildId).zip'
@@ -58,6 +58,6 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(build.ArtifactStagingDirectory)'
-    ArtifactName: 'MonoGame1'
+    ArtifactName: 'MyGame'
     Parallel: true
   displayName: 'Upload Artifacts'
